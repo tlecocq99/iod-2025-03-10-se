@@ -5,10 +5,48 @@
     <nav>
       <!-- works like <a href="/index.html">Home</a> -->
       <a href="/">Home</a>
+      <a href="/Exercise1/src/index.html">Index Page</a>
     </nav>
   </header>
 
   <main>
+    <form method="POST" action="http://127.0.0.1:5500/form">
+      <div>
+        <label>First Name</label>
+        <input type="text" placeholder="First Name">
+      </div>
+      <div>
+        <label>Last Name</label>
+        <input type="text" placeholder="Last Name">
+      </div>
+      <div>
+        <label>HTML</label>
+        <input type="radio" value="HTML">
+        <label>CSS</label>
+        <input type="radio" value="CSS">
+        <label>JavaScript</label>
+        <input type="radio" value="JavaScript">
+      </div>
+      <div>
+        <label>Motorcycle</label>
+        <input type="checkbox" value="Motorcycle">
+        <label>Sedan</label>
+        <input type="checkbox" value=" Sedan">
+        <label>Pickup Truck</label>
+        <input type="checkbox" value="Pickup Truck">
+      </div>
+      <div>
+        <select>
+          <option>Toyota</option>
+          <option>Ford</option>
+          <option>Kia</option>
+          <option>Dodge</option>
+          <option>Chevrolet</option>
+          <option>BMW</option>
+        </select>
+      </div>
+      <button type="submit">Submit form</button>
+    </form>
   </main>
 
   <footer>Copyright &copy; 2024</footer>
