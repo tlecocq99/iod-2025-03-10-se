@@ -23,14 +23,90 @@
 }
 /* II. Box model and common properties */
 /* Put styles for questions 1-8 here */
-/*1.1 & 1.2*/ .box{
+/*1.1, 1.2, 2.1, 2.2, 2.3*/ .box{
     margin: 1px 2px;
     padding: 16px 14px 20px 18px;
-    background-color: blue;
+    background-color: lightblue;
     margin-bottom: 3px;
     width: 91vw;
-    height: 20vh !important;
-} 
+    height: 15vh !important;
+    border-style: solid;
+    border-radius: 20px;
+    border: 10px solid darkred;
+    box-sizing: border-box;
+    overflow:initial;
+    outline: 10px;
+    background-image:url(/Exercise2/src/assets/images/img1.png);
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.position-absolute{
+    position: absolute;
+    top: 0;
+    background-color: wheat;
+    left: 200px;
+    right: 50px;
+}
+.position-relative{
+    position: relative;
+    background-color: chocolate;
+}
+.position-sticky{
+    position: sticky;
+    background-color: coral;
+    top: 10px;
+}
+.text-style{
+    color: forestgreen;
+    font-size: large;
+    line-height: 1;
+    font-family: "Bungee Spice", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    text-align: center ;
+    letter-spacing: 2px;
+    text-transform: lowercase;
+    text-decoration: dashed;
+    }
+a{
+    color: cyan; 
+    font-size: larger; 
+    font-weight: bolder; 
+    text-decoration:overline;
+}
+a:link{
+    font-weight: 800;
+}
+a:hover{
+    color: darkblue;
+    text-decoration: dotted;
+}
+a:active{
+    color: brown;
+    text-decoration: line-through;
+}
+a:focus{
+    color: purple;
+    text-decoration: line-through;
+}
+a:visited{
+    color: pink;
+    font-style: oblique;
+}
+.calc-style{
+    width: 100vw;
+    background-color: aquamarine;
+    width: calc(100vw - 100px);
+}
+.fixed-width-col{
+    width: calc(350px - 25px);
+    display: inline-block;
+}
+.fluid-col{
+    display: inline-block;
+    width: calc(5% + 1000px)
+}
 /*1.3*/ 
 /*1.4*/ 
 /*1.5*/ 
