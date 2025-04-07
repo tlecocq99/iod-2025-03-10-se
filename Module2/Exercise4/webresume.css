@@ -1,0 +1,94 @@
+:root {
+    --bg-color: #f9f9f9;
+    --text-color: #333;
+    --header-bg: #0077b6;
+    --hover-btn: #ffb703;
+    --btn-bg: #023047;
+    --btn-text: white;
+  }
+
+  section {
+    scroll-margin-top: 60px;
+  }
+
+  body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background: var(--bg-color);
+    color: var(--text-color);
+    transition: background 0.3s, color 0.3s;
+  }
+  
+  header, footer, section {
+    padding: 20px;
+    margin: 10px auto;
+    max-width: 800px;
+  }
+  
+  header {
+    background: var(--header-bg);
+    color: white;
+  }
+  
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  h1, h2 {
+    margin: 0 0 10px;
+  }
+  
+  nav {
+    margin-top: 10px;
+    text-align: center;
+  }
+  
+  nav a {
+    margin: 0 10px;
+    color: white;
+    text-decoration: none;
+  }
+  
+  .skills ul {
+    list-style-type: square;
+    padding-left: 20px;
+  }
+  
+  footer {
+    background: #e0e0e0;
+    text-align: center;
+  }
+  
+  #darkModeToggle {
+    padding: 8px 12px;
+    border: none;
+    background-color: var(--btn-bg);
+    color: var(--btn-text);
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
+  
+  #darkModeToggle:hover {
+    background-color: var(--hover-btn);
+    color: #000;
+  }
+  
+  /* Dark mode styles */
+  body.dark {
+    --bg-color: #121212;
+    --text-color: #f0f0f0;
+    --header-bg: #1e1e1e;
+    --btn-bg: #f0f0f0;
+    --btn-text: #000;
+    --hover-btn: #8ecae6;
+  }
+  
+  body.dark footer {
+    background: #2e2e2e;
+  }
+  
