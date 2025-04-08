@@ -1,84 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Thomas Lecocq - Web Resume</title>
-    <link rel="stylesheet" href="webresume.css">
-</head>
-<body>
-  <header>
-    <div class="header-content">
-      <div>
-        <h1>Thomas Stanislas Wyszynski Lecocq</h1>
-        <p>Junior Web Developer</p>
+    <link rel="stylesheet" href="webresume.css" />
+  </head>
+  <body>
+    <aside id="sidebar">
+      <div class="header-content">
+        <div>
+          <h1>Thomas Stanislas Wyszynski Lecocq</h1>
+          <p>Junior Web Developer</p>
+        </div>
+        <button id="darkModeToggle">Dark Mode</button>
       </div>
-      <button id="darkModeToggle">Dark Mode</button>
-    </div>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#experience">Experience</a>
-      <a href="#education">Education</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
-
-  <main>
-    <section id="about">
-      <h2>About Me</h2>
-      <p>I’m a motivated coding bootcamp student passionate about front-end development. Looking to bring clean design and semantic HTML structure to real-world projects.</p>
-    </section>
-
-    <section id="skills" class="skills">
-      <h2>Skills</h2>
-      <ul>
-        <li>HTML5 & CSS3</li>
-        <li>JavaScript (basics)</li>
-        <li>Responsive Design</li>
-        <li>Git & GitHub</li>
-        <li>Problem Solving</li>
-      </ul>
-    </section>
-
-    <section id="experience">
-      <h2>Experience</h2>
-      <article>
-        <h3>Server | Zea Rotisserie and Bar</h3>
-        <p><strong>Duration:</strong> 4 years</p>
+      <nav class="sidebar-nav">
         <ul>
-            <li>Provided excellent customer service in a fast-paced environment.</li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main>
+      <section id="about">
+        <h2>About Me</h2>
+        <p>
+          I’m a motivated coding bootcamp student passionate about front-end
+          development. Looking to bring clean design and semantic HTML structure
+          to real-world projects.
+        </p>
+      </section>
+
+      <section id="skills" class="skills">
+        <h2>Skills</h2>
+        <ul>
+          <li>HTML5 & CSS3</li>
+          <li>JavaScript (basics)</li>
+          <li>Responsive Design</li>
+          <li>Git & GitHub</li>
+          <li>Problem Solving</li>
+        </ul>
+      </section>
+
+      <section id="experience">
+        <h2>Experience</h2>
+        <article>
+          <h3>Server | Zea Rotisserie and Bar</h3>
+          <p><strong>Duration:</strong> 4 years</p>
+          <ul>
+            <li>
+              Provided excellent customer service in a fast-paced environment.
+            </li>
             <li>Managed orders and handled customer concerns.</li>
             <li>Trained new staff on restaurant policies and procedures.</li>
-            <li>Worked collaboratively with kitchen staff to ensure timely service.</li>
-        <p></p>
-      </article>
-    </section>
+            <li>
+              Worked collaboratively with kitchen staff to ensure timely
+              service.
+            </li>
+          </ul>
+          <p></p>
+        </article>
+      </section>
 
-    <section id="education">
-      <h2>Education</h2>
-      <article>
-        <h3>Coding Bootcamp | Set Finish August 2025</h3>
-        <ul>
-            <li>Currently enrolled in a full-stack software engineering bootcamp.</li>
+      <section id="education">
+        <h2>Education</h2>
+        <article>
+          <h3>Coding Bootcamp | Set Finish August 2025</h3>
+          <ul>
+            <li>
+              Currently enrolled in a full-stack software engineering bootcamp.
+            </li>
             <li>Am/Have been learning HTML, CSS, and JavaScript.</li>
             <li>Working on multiple projects to build a portfolio.</li>
-        </ul>
-      </article>
+          </ul>
+        </article>
+      </section>
+
+      <section id="contact">
+        <h2>Contact</h2>
+        <p><a href="mailto:tlecocq99@gmail.com">tlecocq99@gmail.com</a></p>
+        <p><a href="tel:+11234567890">(123) 456-7890</a></p>
+        <p>
+          <a href="https://www.github.com/tlecocq99" target="_blank"
+            >Github.com/tlecocq99</a
+          >
+        </p>
+      </section>
+      <section id="footer">
+        <footer>
+          <p>&copy; 2025 Thomas Lecocq. All rights reserved.</p>
+        </footer>
+    </main>
+
+      <script src="webresume.js"></script>
     </section>
-
-    <section id="contact">
-      <h2>Contact</h2>
-      <p>Email: tlecocq99@gmail.com</p>
-      <p>Phone: (123) 456-7890</p>
-      <p>GitHub: github.com/tlecocq99</p>
-    </section>
-  </main>
-
-  <footer>
-    <p>&copy; 2025 Thomas Lecocq. All rights reserved.</p>
-  </footer>
-
-  <script src="webresume.js"></script>
-</body>
+  </body>
 </html>
