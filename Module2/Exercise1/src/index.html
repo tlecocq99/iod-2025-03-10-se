@@ -1,138 +1,125 @@
 <!DOCTYPE html>
 
 <html>
-
-
-
   <head>
+    <meta charset="utf-8" />
 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <meta charset="utf-8">
+    <meta name="description" content="Lab Exercise" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
 
-  <meta name="description" content="Lab Exercise">
+    <meta name="author" content="Thomas Lecocq" />
 
-  <meta name="keywords" content="HTML, CSS, JavaScript">
-
-  <meta name="author" content="Thomas Lecocq">
-
-  <style>
-    table, th, td {
+    <style>
+      table,
+      th,
+      td {
         border: 1px solid black;
-    }
-</style>
-
-
+      }
+    </style>
   </head>
   <body>
     <h1>My HTML Coding Journey</h1>
-      <article>
-        <h2>Learning elements - div, span, p, pre, ul, li, ol, article</h2>
-          <div>
-            HTML
-          </div>
-          <div>
-          CSS
-          </div>
-          <div>
-            JavaScript
-          </div>
-          <span>
-            HTML
-          </span>
-          <span>
-            CSS
-          </span>
-          <span>
-            JavaScript
-          </span>
-          <p>
-            p represents paragraph     without preserving      spacing
-          </p>
-          <pre>
+    <article>
+      <h2>Learning elements - div, span, p, pre, ul, li, ol, article</h2>
+      <div>HTML</div>
+      <div>CSS</div>
+      <div>JavaScript</div>
+      <span> HTML </span>
+      <span> CSS </span>
+      <span> JavaScript </span>
+      <p>p represents paragraph without preserving spacing</p>
+      <pre>
             Text in         a pre element
             is displayed in a fixed-width
             font, and it preserves
             both      spaces and
             line breaks
-          </pre>
-          <ul>
-            <li>I</li>
-            <li>Love</li>
-            <li>Coding</li>
-            <li>!</li>
-          </ul>
+          </pre
+      >
+      <ul>
+        <li>I</li>
+        <li>Love</li>
+        <li>Coding</li>
+        <li>!</li>
+      </ul>
+      <ol>
+        <li>First</li>
+        <li>Second</li>
+        <li>
+          Third
           <ol>
             <li>First</li>
             <li>Second</li>
-            <li>Third
-              <ol>
-                <li>First</li>
-                <li>Second</li>
-              </ol>
-              
-            </li>
           </ol>
-      </article>
-      <article>
-        <h2>Table Article</h2>
-        <table>
-          <thead>
+        </li>
+      </ol>
+    </article>
+    <article>
+      <h2>Table Article</h2>
+      <table>
+        <thead>
           <tr>
-              <th colspan="2">First header</th>
-              <th>Second header</th>
+            <th colspan="2">First header</th>
+            <th>Second header</th>
           </tr>
-          </thead>
-          <tbody>
-            <tr>
-                  <td>First cell - first row</td>
-                  <td>Second cell - first row</td>
-                  <td>Third cell - first row</td>
-            </tr>
-            <tr>
-                <td rowspan="2">First cell - second row</td>
-                <td>Second cell - second row</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>First cell - third row</td>
-                <td>Second cell - third row</td>
-            </tr>
-          </tbody>
+        </thead>
+        <tbody>
+          <tr>
+            <td>First cell - first row</td>
+            <td>Second cell - first row</td>
+            <td>Third cell - first row</td>
+          </tr>
+          <tr>
+            <td rowspan="2">First cell - second row</td>
+            <td>Second cell - second row</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>First cell - third row</td>
+            <td>Second cell - third row</td>
+          </tr>
+        </tbody>
       </table>
-      
-      </article>
-      <article>
-        <h2>Image Controls</h2>
-        <img src="https://picsum.photos/400/400" alt="ever-changing" height="400px" width="400px" />
-        <img src="/Exercise1/src/assets/html_lab_image.jpg" alt="Clouds" height="400px" width="400px"
-        <video autoplay="true" width="250">
-          <source src="/Exercise1/src/assets/flower.webm" type="video/webm">
-          Sorry, your browser doesn't support embedded videos
-        </video>
-        <audio autoplay="true" src="/Exercise1/src/assets/t-rex-roar.mp3">
-          Your browser does not support the <code>audio</code> element.
-        </audio>
-      </article>
+    </article>
+    <article>
+      <h2>Image Controls</h2>
+      <img
+        src="https://picsum.photos/400/400"
+        alt="ever-changing"
+        height="400px"
+        width="400px"
+      />
+      <img
+        src="./assets/html_lab_image.jpg"
+        alt="Clouds"
+        height="400px"
+        width="400px"
+        <video
+        autoplay="true"
+        controls="false"
+        width="250"
+      />
+      <source src="./assets/flower.webm" type="webm" />
+      Sorry, your browser doesn't support embedded videos
+      <audio src="./assets/t-rex-roar.mp3" controls="false" autoplay="true">
+        Your browser does not support the <code>audio</code> element.
+      </audio>
+    </article>
 
     <header>
-
       <nav>
-
         <!-- works like <a href="/index.html">Home</a> -->
 
         <a href="/">Home</a>
-        <a href="/Exercise1/src/form.html">Form Page</a>
-
+        <a href="./form.html">Form Page</a>
       </nav>
-
     </header>
 
-    <main>
-
-    </main>
+    <main></main>
 
     <footer>Copyright &copy; 2024</footer>
-
-</body>
+  </body>
+</html>
