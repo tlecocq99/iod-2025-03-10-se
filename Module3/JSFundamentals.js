@@ -21,16 +21,33 @@ const main = () => {
 console.log(main());
 
 //Question #2
-const main2 = () => {
-  let three = "3";
-  let four = "4";
-  let thirty = "30";
-  //what is the value of the following expressions?
-  let addition = three + four;
-  let multiplication = three * four;
-  let division = three / four;
-  let subtraction = three - four;
-  let lessThan1 = three < four;
-  let lessThan2 = thirty < four; //This one is not giving the right answer as 30 < 4 is false
+let three = "3";
+let four = "4";
+let thirty = "30";
+//what is the value of the following expressions?
+/*let addition = three + four; This will concatenate the two strings, so the result is "34"
+If we want to add the two numbers, we need to convert them to numbers first: */
+let addition = Number(three) + Number(four); //7
+let multiplication = three * four; //12
+let division = three / four; //0.75
+let subtraction = three - four; //-1
+let lessThan1 = three < four; //true
+//let lessThan2 = thirty < four; This one is not giving the right answer as 30 < 4 is false, so to fix it, we would do:
+//let lessThan2 = thirty > four; Just doing this alone will not work, we need to convert the string to a number first:
+let lessThan2 = Number(thirty) > Number(four); //true
+console.log(
+  addition,
+  multiplication,
+  division,
+  subtraction,
+  lessThan1,
+  lessThan2
+);
+return {
+  addition,
+  multiplication,
+  division,
+  subtraction,
+  lessThan1,
+  lessThan2,
 };
-console.log(main2());
