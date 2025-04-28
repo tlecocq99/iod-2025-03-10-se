@@ -1,6 +1,6 @@
 /*Question #1 makeCounter below is a decorator function which creates and returns a function that
 increments a counter. */
-function makeCounter() {
+function makeCounter1() {
   let currentCount = 0;
   return function () {
     currentCount++;
@@ -8,17 +8,17 @@ function makeCounter() {
     return currentCount;
   };
 }
-let counter1 = makeCounter();
+let counter1 = makeCounter1();
 counter1(); // 1 (3 with incrementBy 3)
 counter1(); // 2 (6 with incrementBy 3)
 /*a) Create a second counter 'counter2' using the makeCounter function and test to see if
 it remains independent to counter1 */
-let counter2 = makeCounter();
+let counter2 = makeCounter1();
 counter2(); // 1 (3 with incrementBy 3)
 counter2(); // 2 (6 with incrementBy 3)
 /*b) Modify makeCounter so that it takes an argument startFrom specifying where the
 counter starts from (instead of always starting from 0) */
-function makeCounter(startFrom) {
+function makeCounter2(startFrom) {
   let currentCount = startFrom || 5;
   return function () {
     currentCount++;
@@ -26,11 +26,11 @@ function makeCounter(startFrom) {
     return currentCount;
   };
 }
-let counter3 = makeCounter(10);
+let counter3 = makeCounter2(10);
 counter3(); // 11 (13 with incrementBy 3)
 /* c) Modify makeCounter to take another argument incrementBy, which specifies how
 much each call to counter() should increase the counter value by. */
-function makeCounter(startFrom, incrementBy) {
+function makeCounter3(startFrom, incrementBy) {
   let currentCount = startFrom || 0;
   return function () {
     currentCount += incrementBy || 3;
@@ -69,7 +69,7 @@ clearTimeout(timeoutId);
 console.log("Timeout cleared for test #9");
 
 //Question #3: Using the following code to test and start with:
-function printMe() {
+function printMe1() {
   console.log("printing debounced message");
 }
 printMe = debounce(printMe); //create this debounce function for a)
@@ -81,7 +81,7 @@ setTimeout(printMe, 300);
 /* a) Create a debounce(func) decorator, which is a wrapper that takes a function func and
 suspends calls to func until there's 1000 milliseconds of inactivity. After this 1 second
 pause, the most recent call to func should be executed and any others ignored. */
-function debounce(func) {
+function debounce1(func) {
   let timeoutId;
   return function (...args) {
     clearTimeout(timeoutId);
@@ -333,7 +333,7 @@ the callback function and the delay after which it should execute. */
 /* a) Create a promise-based alternative randomDelay() that delays execution for a
 random amount of time (between 1 and 20 seconds) and returns a promise we can use
 via .then(), as in the starter code below*/
-function randomDelay() {
+function randomDelay1() {
   return new Promise((resolve) => {
     const delay = Math.floor(Math.random() * 20000) + 1000; // random delay between 1 and 20 seconds
     setTimeout(() => {
