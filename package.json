@@ -1,0 +1,23 @@
+{
+  "name": "iod-2025-03-10-se",
+  "version": "1.0.0",
+  "description": "IOD Software Engineering",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tlecocq99/iod-2025-03-10-se.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tlecocq99/iod-2025-03-10-se/issues"
+  },
+  "homepage": "https://github.com/tlecocq99/iod-2025-03-10-se#readme",
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  },
+  "type": "module"
+}

@@ -154,3 +154,277 @@ function printFibonacciWithLimit(limit) {
   }, 1000);
 }
 printFibonacciWithLimit(10); // prints 10 Fibonacci numbers every second
+
+/* Question #5: The following car object has several properties and a method which uses them to print a
+description. When calling the function normally this works as expected, but using it from
+within setTimeout fails. Why? */
+let car = {
+  make: "Porsche",
+  model: "911",
+  year: 1964,
+
+  description() {
+    console.log(`This car is a ${this.make} ${this.model} from ${this.year}`);
+  },
+};
+car.description(); //works
+setTimeout(car.description, 200); //fails
+/* a) Fix the setTimeout call by wrapping the call to car.description() inside a
+function */
+setTimeout(() => car.description(), 200); //works now
+/* b) Change the year for the car by creating a clone of the original and overriding it */
+car = { ...car, year: 2011 };
+/*c) Does the delayed description() call use the original values or the new values from
+b)? Why?*/
+// The delayed description() call uses the original values because the context of 'this' in the setTimeout function is not bound to the car2 object. It still refers to the original car object. To fix this, we can use an arrow function or bind the context explicitly.
+/*d) Use bind to fix the description method so that it can be called from within
+setTimeout without a wrapper function*/
+car.description = car.description.bind(car); //binds the context to car2
+setTimeout(car.description, 200); //works now with car2 values
+/*e) Change another property of the car by creating a clone and overriding it, and test that
+setTimeout still uses the bound value from d)*/
+car = { ...car, make: "Ferarri" }; //changes the make to Ferarri but keeps bound value of porsche
+
+/* Question# 6: Use the Function prototype to add a new delay(ms) function to all functions, which can
+be used to delay the call to that function by ms milliseconds.*/
+function multiply(a, b) {
+  console.log(a * b);
+}
+/* a) Use the example multiply function below to test it with, as above, and assume that all
+delayed functions will take two parameters*/
+Function.prototype.delay = function (ms) {
+  const originalFunc = this; // store the original function
+  return function (...args) {
+    setTimeout(() => {
+      originalFunc.apply(this, args); // call the original function with the provided arguments
+    }, ms);
+  };
+};
+multiply.delay(500)(5, 5); // prints 25 after 500 milliseconds
+/* b) Use apply to improve your solution so that delayed functions can take any number of
+parameters*/
+Function.prototype.delayB = function (ms) {
+  const originalFunc = this; // store the original function
+  return function (...args) {
+    setTimeout(() => {
+      originalFunc.apply(this, args); // call the original function with the provided arguments
+    }, ms);
+  };
+};
+function multiply4(a, b, c) {
+  console.log(a * b * c);
+}
+multiply4.delayB(500)(5, 5, 2); // prints 50 after 500 milliseconds
+
+/* Question #7: The following DigitalClock class uses an interval to print the time every second once
+started, until stopped. */
+class DigitalClock {
+  constructor(prefix) {
+    this.prefix = prefix;
+  }
+  display() {
+    let date = new Date();
+    //create 3 variables in one go using array destructuring
+    let [hours, mins, secs] = [
+      date.getHours(),
+      date.getMinutes(),
+      date.getSeconds(),
+    ];
+
+    if (hours < 10) hours = "0" + hours;
+    if (mins < 10) mins = "0" + mins;
+    if (secs < 10) secs = "0" + secs;
+    console.log(`${this.prefix} ${hours}:${mins}:${secs}`);
+  }
+  stop() {
+    clearInterval(this.timer);
+  }
+  start() {
+    this.display();
+    this.timer = setInterval(() => this.display(), 1000);
+  }
+}
+const myClock = new DigitalClock("my clock:");
+myClock.start();
+/*a) Create a new class PrecisionClock that inherits from DigitalClock and adds the
+parameter precision – the number of ms between 'ticks'. This precision parameter
+should default to 1 second if not supplied.*/
+class PrecisionClock extends DigitalClock {
+  constructor(prefix, precision = 1000) {
+    super(prefix);
+    this.precision = precision;
+  }
+  start() {
+    this.display();
+    this.timer = setInterval(() => this.display(), this.precision);
+  }
+}
+const myPrecisionClock = new PrecisionClock("my precision clock:", 500);
+myPrecisionClock.start();
+/*b) Create a new class AlarmClock that inherits from DigitalClock and adds the
+parameter wakeupTime in the format hh:mm. When the clock reaches this time, it
+should print a 'Wake Up' message and stop ticking. This wakeupTime parameter should
+default to 07:00 if not supplied.*/
+class AlarmClock extends DigitalClock {
+  constructor(prefix, wakeupTime = "07:00") {
+    super(prefix);
+    this.wakeupTime = wakeupTime;
+  }
+  start() {
+    this.display();
+    this.timer = setInterval(() => {
+      this.display();
+      const currentTime = new Date();
+      const currentHours = String(currentTime.getHours()).padStart(2, "0");
+      const currentMinutes = String(currentTime.getMinutes()).padStart(2, "0");
+      if (`${currentHours}:${currentMinutes}` === this.wakeupTime) {
+        console.log("Wake Up!");
+        this.stop();
+      }
+    }, 1000);
+  }
+}
+const myAlarmClock = new AlarmClock("my alarm clock:", "07:00");
+myAlarmClock.start();
+
+/* Question #8: Using the following starter code, create a decorator function to validate function arguments
+as strings. Test it by decorating the given orderItems function below.*/
+function orderItems(...itemNames) {
+  return `Order placed for: ${itemNames.join(", ")}`;
+}
+/* a) Create a decorator function validateStringArg(fn) which will validate an
+argument passed to fn to ensure that it is a string, throwing an error if not*/
+function validateStringArg(fn) {
+  return function (arg) {
+    if (typeof arg !== "string") {
+      throw new Error("Argument must be a string");
+    }
+    return fn(arg);
+  };
+}
+/* b) Extend orderItems to use the ... rest operator, allowing multiple item name
+arguments, and include them all in the returned string*/
+
+/* c) Extend the decorator function to validate as strings all arguments passed to fn */
+function validateStringArgs(fn) {
+  return function () {
+    for (let arg of arguments) {
+      if (typeof arg !== "string") {
+        throw new Error(`Argument ${arg} must be a string`);
+      }
+    }
+    return fn.apply(this, arguments);
+  };
+}
+/*d) When testing the decorated function, use try-catch blocks to handle errors thrown for
+non-string arguments*/
+try {
+  console.log(validatedOrderItem("Apple Watch")); // should run the function
+  //console.log(validatedOrderItem(123)); // should throw an error
+
+  console.log(validatedOrderItems("Apple Watch", "Airpods")); // should run the function
+  console.log(validatedOrderItems("abc", 123)); // should throw an error
+} catch (err) {
+  console.log(err);
+}
+
+/* Question #9: We can delay execution of a function using setTimeout, where we need to provide both
+the callback function and the delay after which it should execute. */
+/* a) Create a promise-based alternative randomDelay() that delays execution for a
+random amount of time (between 1 and 20 seconds) and returns a promise we can use
+via .then(), as in the starter code below*/
+function randomDelay() {
+  return new Promise((resolve) => {
+    const delay = Math.floor(Math.random() * 20000) + 1000; // random delay between 1 and 20 seconds
+    setTimeout(() => {
+      resolve();
+    }, delay);
+  });
+}
+randomDelay().then(() => console.log("There appears to have been a delay."));
+/*b) If the random delay is even, consider this a successful delay and resolve the promise,
+and if the random number is odd, consider this a failure and reject it*/
+function randomDelay() {
+  return new Promise((resolve, reject) => {
+    const delay = Math.floor(Math.random() * 20000) + 1000; // random delay between 1 and 20 seconds
+    setTimeout(() => {
+      if (delay % 2 === 0) {
+        resolve();
+      } else {
+        reject(new Error("Random delay was odd, rejecting promise."));
+      }
+    }, delay);
+  });
+}
+/* c) Update the testing code to catch rejected promises and print a different message*/
+randomDelay()
+  .then(() => console.log("There appears to have been a delay."))
+  .catch((error) => console.log(error.message));
+/* d) Try to update the then and catch messages to include the random delay value*/
+randomDelay()
+  .then((delay) =>
+    console.log(`There appears to have been a delay of ${delay}ms.`)
+  )
+  .catch((error) => console.log(`Error: ${error.message}`));
+
+/* Question #10: Fetch is a browser-based function to send a request and receive a response from a server,
+which uses promises to handle the asynchronous response.
+The below fetchURLData uses fetch to check the response for a successful status
+code, and returns a promise containing the JSON sent by the remote server if successful
+or an error if it failed. (To run this code in a node.js environment, follow the instructions in the
+comments before the function.) */
+import fetch from "node-fetch";
+globalThis.fetch = fetch;
+fetchURLData("https://jsonplaceholder.typicode.com/todos/1")
+  .then((data) => console.log(data))
+  .catch((error) => console.error(error.message));
+function fetchURLData(url) {
+  let fetchPromise = fetch(url).then((response) => {
+    if (response.status === 200) {
+      return response.json();
+    } else {
+      throw new Error(`Request failed with status ${response.status}`);
+    }
+  });
+  return fetchPromise;
+}
+
+fetchURLData("https://jsonplaceholder.typicode.com/todos/1")
+  .then((data) => console.log(data))
+  .catch((error) => console.error(error.message));
+/* a) Write a new version of this function using async/await*/
+async function fetchURLDataAsync(url) {
+  try {
+    const response = await fetch(url);
+    if (response.status === 200) {
+      const data = await response.json();
+      return data;
+    } else {
+      throw new Error(`Request failed with status ${response.status}`);
+    }
+  } catch (error) {
+    console.error(error.message);
+  }
+}
+/* b) Test both functions with valid and invalid URLs*/
+fetchURLData("https://jsonplaceholder.typicode.com/todos/1")
+  .then((data) => console.log(data))
+  .catch((error) => console.error(error.message));
+fetchURLData("https://jsonplaceholder.typicode.com/todos/invalid");
+/* c) (Extension) Extend your new function to accept an array of URLs and fetch all of them,
+using Promise.all to combine the results.*/
+async function fetchMultipleURLs(urls) {
+  try {
+    const fetchPromises = urls.map((url) => fetchURLDataAsync(url));
+    const results = await Promise.all(fetchPromises);
+    return results;
+  } catch (error) {
+    console.error(error.message);
+  }
+}
+fetchMultipleURLs([
+  "https://jsonplaceholder.typicode.com/todos/1",
+  "https://jsonplaceholder.typicode.com/todos/2",
+])
+  .then((data) => console.log(data))
+  .catch((error) => console.error(error.message));
