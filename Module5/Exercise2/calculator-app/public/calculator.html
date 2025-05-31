@@ -3,18 +3,74 @@
     <title>Calculator Example</title>
   </head>
   <body>
-    <div>
-      Result
+    <div style="padding: 15px">
+      <input type="number" id="num1" value="2" />
+      <input type="number" id="num2" value="4" />
+      <button id="addButton">Add</button>
       <span id="result"></span>
     </div>
-  </body>
-  <script>
-    let num1 = 2;
-    let num2 = 4;
-    fetch(`/calculator/add?num1=${num1}&num2=${num2}`)
-      .then((response) => response.json())
-      .then((data) => {
-        document.getElementById("result").innerHTML = data.result;
+    <div style="padding: 15px">
+      <input type="number" id="num3" value="2" />
+      <input type="number" id="num4" value="4" />
+      <button id="subtractButton">Subtract</button>
+      <span id="result2"></span>
+    </div>
+    <div style="padding: 15px">
+      <input type="number" id="num5" value="2" />
+      <input type="number" id="num6" value="4" />
+      <button id="multiplyButton">Multiply</button>
+      <span id="result3"></span>
+    </div>
+    <div style="padding: 15px">
+      <input type="number" id="num7" value="2" />
+      <input type="number" id="num8" value="4" />
+      <button id="divideButton">Divide</button>
+      <span id="result4"></span>
+    </div>
+    <script>
+      document.getElementById("addButton").addEventListener("click", () => {
+        let num1 = document.getElementById("num1").value;
+        let num2 = document.getElementById("num2").value;
+        fetch(`/calculator/add?num1=${num1}&num2=${num2}`)
+          .then((response) => response.json())
+          .then((data) => {
+            document.getElementById("result").innerHTML = data.result;
+          });
       });
-  </script>
+
+      document
+        .getElementById("subtractButton")
+        .addEventListener("click", () => {
+          let num3 = document.getElementById("num3").value;
+          let num4 = document.getElementById("num4").value;
+          fetch(`/calculator/subtract?num3=${num3}&num4=${num4}`)
+            .then((response) => response.json())
+            .then((data) => {
+              document.getElementById("result2").innerHTML = data.result;
+            });
+        });
+
+      document
+        .getElementById("multiplyButton")
+        .addEventListener("click", () => {
+          let num5 = document.getElementById("num5").value;
+          let num6 = document.getElementById("num6").value;
+          fetch(`/calculator/multiply?num5=${num5}&num6=${num6}`)
+            .then((response) => response.json())
+            .then((data) => {
+              document.getElementById("result3").innerHTML = data.result;
+            });
+        });
+
+      document.getElementById("divideButton").addEventListener("click", () => {
+        let num7 = document.getElementById("num7").value;
+        let num8 = document.getElementById("num8").value;
+        fetch(`/calculator/divide?num7=${num7}&num8=${num8}`)
+          .then((response) => response.json())
+          .then((data) => {
+            document.getElementById("result4").innerHTML = data.result;
+          });
+      });
+    </script>
+  </body>
 </html>
