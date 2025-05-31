@@ -12,8 +12,8 @@ router.get("/add", (req, res) => {
 });
 
 router.get("/subtract", (req, res) => {
-  let number1 = parseInt(req.query.num1);
-  let number2 = parseInt(req.query.num2);
+  let number1 = parseInt(req.query.num3);
+  let number2 = parseInt(req.query.num4);
   let sum = number1 - number2;
   console.log(sum);
   res.status(200);
@@ -21,8 +21,8 @@ router.get("/subtract", (req, res) => {
 });
 
 router.get("/multiply", (req, res) => {
-  let number1 = parseInt(req.query.num1);
-  let number2 = parseInt(req.query.num2);
+  let number1 = parseInt(req.query.num5);
+  let number2 = parseInt(req.query.num6);
   let sum = number1 * number2;
   console.log(sum);
   res.status(200);
@@ -30,8 +30,8 @@ router.get("/multiply", (req, res) => {
 });
 
 router.get("/divide", (req, res) => {
-  let number1 = parseInt(req.query.num1);
-  let number2 = parseInt(req.query.num2);
+  let number1 = parseInt(req.query.num7);
+  let number2 = parseInt(req.query.num8);
   let sum = number1 / number2;
   console.log(sum);
   res.status(200);
