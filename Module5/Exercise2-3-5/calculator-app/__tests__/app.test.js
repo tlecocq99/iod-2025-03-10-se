@@ -13,6 +13,9 @@ describe("Calculator Routes", () => {
         expect(response.body).toEqual({
           result: number1 + number2,
         });
+        console.log(
+          `The result of ${number1} + ${number2} = ${response.body.result}`
+        );
       });
   });
   test("GET /calculator/subtract => difference of numbers", () => {
@@ -24,6 +27,9 @@ describe("Calculator Routes", () => {
         expect(response.body).toEqual({
           result: number1 - number2,
         });
+        console.log(
+          `The result of ${number1} - ${number2} = ${response.body.result}`
+        );
       });
   });
   test("GET /calculator/multiply => product of numbers", () => {
@@ -35,6 +41,9 @@ describe("Calculator Routes", () => {
         expect(response.body).toEqual({
           result: number1 * number2,
         });
+        console.log(
+          `The result of ${number1} * ${number2} = ${response.body.result}`
+        );
       });
   });
   test("GET /calculator/divide => quotient of numbers", () => {
@@ -46,6 +55,9 @@ describe("Calculator Routes", () => {
         expect(response.body).toEqual({
           result: number1 / number2,
         });
+        console.log(
+          `The result of ${number1} / ${number2} = ${response.body.result}`
+        );
       });
   });
 });
