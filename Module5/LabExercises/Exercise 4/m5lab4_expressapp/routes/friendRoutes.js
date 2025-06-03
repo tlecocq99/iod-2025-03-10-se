@@ -98,27 +98,29 @@ router.post("/", (req, res) => {
 router.put("/:id", (req, res) => {
   let friendId = req.params.id;
   let updatedFriend = req.body;
+  const friendIndex = friends.findIndex((friend) => {
+    friend.id === friendId;
+  });
   console.log(updatedFriend);
-
-  if (!updatedFriend.name || !updatedFriend.gender) {
-    res
-      .status(500)
-      .json({ error: "Friend object must contain a name and gender" });
-    return;
-  } else if (!updatedFriend.id) {
-    updatedFriend.id = friends.length + 1; // generate an ID if one is not present
-  }
-
-  if (!friends.find((friend) => friend.id == friendId)) {
+  if (friendIndex === -1 || typeof friendIndex != "number") {
+    console.log("No friend with ID " + friendId);
     res.status(404).json({ error: "No friend with ID " + friendId });
     return;
   }
-
-  // Replace the old friend data for friendId with the new data from updatedFriend
-  friends[friends.findIndex((friend) => friend.id == friendId)] = updatedFriend;
-
-  // Modify this response with the updated friend, or a 404 if not found
-  res.status(200).json(updatedFriend);
+  friends[friendIndex] = { ...friends[friendIndex], ...updatedFriend };
+  console.log("Updated friend:", friends[friendIndex]);
+  res.status(200).json(friends[friendIndex]);
 });
+if (!updatedFriend.name || !updatedFriend.gender) {
+  res
+    .status(404)
+    .json({ error: "Friend object must contain a name and gender" });
+  return;
+} else if (!updatedFriend.id) {
+  updatedFriend.id = friends.length + 1; // generate an ID if one is not present
+}
+// Replace the old friend data for friendId with the new data from updatedFriend
+// Modify this response with the updated friend, or a 404 if not found
+res.status(200).json(updatedFriend);
 
 module.exports = router;

@@ -5,7 +5,7 @@ class Logger {
   }
   log = (value) => {
     console.log(
-      `[Random ID: ${this.randomId} Operation type :${this.id}]  result=${value}`
+      `[Random ID: ${this.randomId}] [Operation type :${this.id}] [result=${value}]`
     );
   };
 }
