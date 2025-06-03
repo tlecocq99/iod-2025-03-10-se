@@ -102,7 +102,7 @@ router.put("/:id", (req, res) => {
     friend.id === friendId;
   });
   console.log(updatedFriend);
-  if (friendIndex === -1 || typeof friendIndex != "number") {
+  if (typeof friendIndex !== "number") {
     console.log("No friend with ID " + friendId);
     res.status(404).json({ error: "No friend with ID " + friendId });
     return;
@@ -111,16 +111,8 @@ router.put("/:id", (req, res) => {
   console.log("Updated friend:", friends[friendIndex]);
   res.status(200).json(friends[friendIndex]);
 });
-if (!updatedFriend.name || !updatedFriend.gender) {
-  res
-    .status(404)
-    .json({ error: "Friend object must contain a name and gender" });
-  return;
-} else if (!updatedFriend.id) {
-  updatedFriend.id = friends.length + 1; // generate an ID if one is not present
-}
+
 // Replace the old friend data for friendId with the new data from updatedFriend
 // Modify this response with the updated friend, or a 404 if not found
-res.status(200).json(updatedFriend);
 
 module.exports = router;
