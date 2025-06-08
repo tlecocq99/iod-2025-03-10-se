@@ -1,0 +1,46 @@
+.bigcats-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.bigcats-controls {
+  margin-bottom: 1rem;
+}
+
+.bigcats-controls button {
+  margin-right: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.cat-item {
+  background: #fafafa;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.cat-image {
+  display: block;
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.cat-name {
+  margin: 0.5rem 0 0.25rem;
+  font-size: 1.2rem;
+}
+
+.cat-latin {
+  margin: 0 0 0.5rem;
+  color: #555;
+  font-style: italic;
+}
