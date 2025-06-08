@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import SingleCat from "./SingleCat";
+import AddCatForm from "./AddCatsForm";
 import "./BigCats.css";
 
 const initialCats = [
@@ -56,20 +57,27 @@ const initialCats = [
 
 export default function BigCats() {
   const [cats, setCats] = useState(initialCats);
-  const sortAlpha = () => {
+  const [nextId, setNextId] = useState(initialCats.length + 1);
+
+  // add a new cat, incrementing ID
+  const handleAdd = ({ name, latinName, image }) => {
+    setCats([...cats, { id: nextId, name, latinName, image }]);
+    setNextId(nextId + 1);
+  };
+
+  // delete by id
+  const handleDelete = (id) => {
+    setCats(cats.filter((cat) => cat.id !== id));
+  };
+
+  // sorting & filtering (always operate on full list for independent filters)
+  const sortAlpha = () =>
     setCats([...initialCats].sort((a, b) => a.name.localeCompare(b.name)));
-  };
-  const reverseList = () => {
-    setCats([...initialCats].reverse());
-  };
-  const filterPanthera = () => {
-    setCats(
-      [...initialCats].filter((cat) => cat.latinName.startsWith("Panthera"))
-    );
-  };
-  const resetList = () => {
-    setCats([...initialCats]);
-  };
+  const reverseList = () => setCats([...initialCats].reverse());
+  const filterPanthera = () =>
+    setCats(initialCats.filter((cat) => cat.latinName.startsWith("Panthera")));
+  const resetList = () => setCats(initialCats);
+
   return (
     <div>
       <div className="bigcats-controls">
@@ -78,9 +86,12 @@ export default function BigCats() {
         <button onClick={filterPanthera}>Panthera Only</button>
         <button onClick={resetList}>Reset</button>
       </div>
+
+      <AddCatForm onAdd={handleAdd} />
+
       <ul className="bigcats-list">
         {cats.map((cat) => (
-          <SingleCat key={cat.id} cat={cat} />
+          <SingleCat key={cat.id} cat={cat} onDelete={handleDelete} />
         ))}
       </ul>
     </div>

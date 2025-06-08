@@ -3,6 +3,7 @@ import "./App.css";
 import Greeting from "./components/Greeting";
 import BigCats from "./components/BigCats";
 import Emoji from "./components/Emoji";
+import AddCats from "./components/AddCatsForm";
 // This creates a new component as a function that returns some JSX.
 export function App() {
   return (
@@ -20,6 +21,7 @@ export function App() {
       </header>
       {/* BigCats component (Exercise 2*/}
       <BigCats />
+      {/* Emoji component (Exercise 3) */}
       <h1>The Changing of the Moods</h1>
       <Emoji />
     </div>
