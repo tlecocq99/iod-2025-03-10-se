@@ -11,7 +11,7 @@ export default function AddCatForm({ onAdd }) {
     e.preventDefault();
     setError("");
     if (!name.trim() || !latinName.trim() || !image.trim()) {
-      setError("Please fill in all fields.");
+      setError("Please fill in all three fields.");
       return;
     }
     onAdd({
@@ -30,24 +30,24 @@ export default function AddCatForm({ onAdd }) {
         type="text"
         placeholder="Name"
         value={name}
-        onChange={(e) => setName(e.target.value)}
+        onChange={e => setName(e.target.value)}
       />
       <input
         type="text"
         placeholder="Latin Name"
         value={latinName}
-        onChange={(e) => setLatinName(e.target.value)}
+        onChange={e => setLatinName(e.target.value)}
       />
       <input
         type="text"
         placeholder="Image URL"
         value={image}
-        onChange={(e) => setImage(e.target.value)}
+        onChange={e => setImage(e.target.value)}
       />
       <button type="submit">Add Cat</button>
 
       {/* error message*/}
-      {error && <p className="error-message">{error}</p>}
+      {error && <div className="error-message">{error}</div>}
     </form>
   );
 }

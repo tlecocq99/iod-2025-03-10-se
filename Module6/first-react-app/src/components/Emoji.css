@@ -2,14 +2,15 @@
   display: flex;
   align-items: center;
   gap: 1rem;
+  justify-content: center;
 }
 
 .emoji-char {
-  font-size: 3rem;
+  font-size: 5rem;
 }
 
 .emoji-button {
   padding: 0.5rem 1rem;
-  font-size: 1rem;
+  font-size: 2rem;
   cursor: pointer;
 }

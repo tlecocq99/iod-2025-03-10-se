@@ -1,0 +1,26 @@
+.calculator {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.calculator input,
+.calculator select {
+  padding: 1rem;
+  font-size: 1rem;
+  width: 200px;
+}
+
+.calculator button {
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.calculator-result {
+  width: 100%;
+  margin-top: 1rem;
+  font-weight: bold;
+}

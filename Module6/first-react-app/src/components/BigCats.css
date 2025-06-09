@@ -9,17 +9,22 @@
   cursor: pointer;
 }
 
+.bigcats-controls button.active {
+  background-color: #007bff;
+  color: white;
+}
+
 .add-cat-form {
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 
 .add-cat-form input {
-  margin-right: 0.5rem;
+  margin-right: 1rem;
   padding: 0.4rem;
 }
 
 .add-cat-form button {
-  padding: 0.4rem 0.8rem;
+  padding: 0.8rem 1.2rem;
   cursor: pointer;
 }
 
@@ -29,7 +34,7 @@
   margin: 0;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 1rem;
+  gap: 2rem;
 }
 
 .cat-item {
@@ -39,7 +44,7 @@
   overflow: hidden;
   text-align: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 0.5rem;
+  padding: 0.6rem;
 }
 
 .cat-image {
@@ -62,14 +67,14 @@
 
 .delete-button {
   background: none;
-  border: none;
+  border: ;
   color: #c00;
   cursor: pointer;
   font-size: 0.8rem;
   margin-top: 0.5rem;
 }
 .error-message {
-  color: red;
+  color: #c00;
   margin-top: 0.5rem;
   font-size: 0.9rem;
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import SingleCat from "./SingleCat";
 import AddCatForm from "./AddCatsForm";
 import "./BigCats.css";
@@ -58,39 +58,66 @@ const initialCats = [
 export default function BigCats() {
   const [cats, setCats] = useState(initialCats);
   const [nextId, setNextId] = useState(initialCats.length + 1);
-
+  const [sortAsc, setSortAsc] = useState(false);
+  const [sortDsec, setSortDsec] = useState(false);
+  const [sortPanthera, setSortPanthera] = useState(false);
   // add a new cat, incrementing ID
   const handleAdd = ({ name, latinName, image }) => {
-    setCats([...cats, { id: nextId, name, latinName, image }]);
-    setNextId(nextId + 1);
+    setCats((prev) => [...prev, { id: nextId, name, latinName, image }]);
+    setNextId((prev) => prev + 1);
   };
 
   // delete by id
   const handleDelete = (id) => {
-    setCats(cats.filter((cat) => cat.id !== id));
+    setCats((prev) => prev.filter((cat) => cat.id !== id));
   };
 
   // sorting & filtering (always operate on full list for independent filters)
-  const sortAlpha = () =>
-    setCats([...initialCats].sort((a, b) => a.name.localeCompare(b.name)));
-  const reverseList = () => setCats([...initialCats].reverse());
-  const filterPanthera = () =>
-    setCats(initialCats.filter((cat) => cat.latinName.startsWith("Panthera")));
-  const resetList = () => setCats(initialCats);
+  const toggleSortAsc = () => setSortAsc((prev) => !prev);
+  const toggleSortDesc = () => setSortDsec((prev) => !prev);
+  const toggleSortPanthera = () => setSortPanthera((prev) => !prev);
+  const resetList = () => {
+    setSortAsc(false);
+    setSortDsec(false);
+    setSortPanthera(false);
+    setCats(initialCats);
+  };
+
+  const displayedCats = useMemo(() => {
+    let list = [...cats];
+    if (sortPanthera) {
+      list = list.filter((cat) => cat.latinName.startsWith("Panthera "));
+    }
+    if (sortAsc && !sortDsec) {
+      list.sort((a, b) => a.name.localeCompare(b.name));
+    } else if (!sortAsc && sortDsec) {
+      list.sort((a, b) => b.name.localeCompare(a.name));
+    }
+    return list;
+  }, [cats, sortAsc, sortDsec, sortPanthera]);
 
   return (
     <div>
       <div className="bigcats-controls">
-        <button onClick={sortAlpha}>Sort A–Z</button>
-        <button onClick={reverseList}>Reverse</button>
-        <button onClick={filterPanthera}>Panthera Only</button>
-        <button onClick={resetList}>Reset</button>
+        <button className={sortAsc ? "active" : ""} onClick={toggleSortAsc}>
+          Sort A–Z
+        </button>
+        <button className={sortDsec ? "active" : ""} onClick={toggleSortDesc}>
+          Sort Z-A
+        </button>
+        <button
+          className={sortPanthera ? "active" : ""}
+          onClick={toggleSortPanthera}
+        >
+          Panthera Only
+        </button>
+        <button onClick={resetList}>Reset List</button>
       </div>
 
       <AddCatForm onAdd={handleAdd} />
 
       <ul className="bigcats-list">
-        {cats.map((cat) => (
+        {displayedCats.map((cat) => (
           <SingleCat key={cat.id} cat={cat} onDelete={handleDelete} />
         ))}
       </ul>

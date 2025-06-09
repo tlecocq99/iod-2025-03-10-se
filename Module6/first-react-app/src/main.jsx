@@ -8,11 +8,3 @@ createRoot(document.getElementById("root")).render(
     <App />
   </StrictMode>
 );
-
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    {" "}
-    // Strict Mode does extra checks during development
-    <App /> // App is App.jsx - where all components are rendered
-  </React.StrictMode>
-); // this syntax can vary between builder tools and apps but achieves the same purpose
