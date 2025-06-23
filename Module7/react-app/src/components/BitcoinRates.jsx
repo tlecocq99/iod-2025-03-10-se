@@ -1,56 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import useBitcoinRate from "../hooks/useBitcoinRate";
+import Emoji from "./Emoji";
+import "./BitcoinRates.css";
 
 const currencies = ["USD", "AUD", "NZD", "GBP", "EUR", "SGD"];
 
 export default function BitcoinRates() {
   const [currency, setCurrency] = useState(currencies[0]);
-  const [price, setPrice] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const controller = new AbortController();
-    const signal = controller.signal;
-
-    setLoading(true);
-    setError(null);
-
-    fetch(
-      `https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=${currency.toLowerCase()}`,
-      { signal }
-    )
-      .then((res) => {
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        return res.json();
-      })
-      .then((data) => {
-        const rate = data.bitcoin?.[currency.toLowerCase()];
-        if (rate == null) throw new Error("Unexpected response format");
-        setPrice(rate);
-      })
-      .catch((err) => {
-        if (err.name !== "AbortError") {
-          setError(err.message);
-        }
-      })
-      .finally(() => {
-        if (!signal.aborted) setLoading(false);
-      });
-
-    // cleanup if currency changes or component unmounts
-    return () => controller.abort();
-  }, [currency]);
+  const { price, loading, error } = useBitcoinRate(currency);
 
   return (
     <div className="BitcoinRates componentBox">
+      <Emoji />
       <h3>Bitcoin Exchange Rate</h3>
-
-      <label htmlFor="currency-select">
-        Choose currency:{" "}
+      <label htmlFor="currency-select" className="currency-label">
+        Choose currency:
         <select
           id="currency-select"
           value={currency}
           onChange={(e) => setCurrency(e.target.value)}
+          className="currency-select"
         >
           {currencies.map((curr) => (
             <option key={curr} value={curr}>
@@ -59,15 +28,24 @@ export default function BitcoinRates() {
           ))}
         </select>
       </label>
+      <div className="status">
+        {loading && <p className="loading">Loading…</p>}
+        {error && <p className="error">Error: {error}</p>}
+        {price != null &&
+          !loading &&
+          !error &&
+          (() => {
+            // format the number as money in the current currency
+            const formatted = new Intl.NumberFormat(undefined, {
+              style: "currency",
+              currency,
+              // optional: drop decimals if you like
+              minimumFractionDigits: 0,
+              maximumFractionDigits: 0,
+            }).format(price);
 
-      <div style={{ marginTop: ".5rem" }}>
-        {loading && <p>Loading…</p>}
-        {error && <p style={{ color: "red" }}>Error: {error}</p>}
-        {price != null && !loading && !error && (
-          <p>
-            1 BTC = {price} {currency}
-          </p>
-        )}
+            return <p className="result">1 BTC = {formatted}</p>;
+          })()}
       </div>
     </div>
   );
