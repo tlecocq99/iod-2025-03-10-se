@@ -15,7 +15,7 @@ export function EmojiProvider({ children }) {
 }
 
 export function useEmoji() {
-  const context = useContext(EmojiContext);
-  if (!context) throw new Error("useEmoji must be used within EmojiProvider");
-  return context;
+  const ctx = useContext(EmojiContext);
+  if (!ctx) throw new Error("useEmoji must be used within EmojiProvider");
+  return ctx;
 }

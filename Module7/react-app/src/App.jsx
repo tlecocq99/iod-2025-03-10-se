@@ -1,15 +1,18 @@
 import React from "react";
-import { EmojiProvider } from "./context/EmojiContext";
-import BitcoinRates from "./components/BitcoinRates";
+import { BrowserRouter as Router } from "react-router-dom";
+import { EmojiProvider } from "./context/EmojiContext.jsx";
+import AppRoutes from "./AppRoutes.jsx";
 import "./App.css";
 
 export default function App() {
   return (
     <EmojiProvider>
-      <div className="App">
-        <h1>Crypto Dashboard</h1>
-        <BitcoinRates />
-      </div>
+      <Router>
+        <div className="App">
+          <h1>Crypto Dashboard</h1>
+          <AppRoutes />
+        </div>
+      </Router>
     </EmojiProvider>
   );
 }

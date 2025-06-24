@@ -27,7 +27,6 @@ export default function useBitcoinRate(currency) {
   useEffect(() => {
     const controller = new AbortController();
     const signal = controller.signal;
-
     dispatch({ type: FETCH_INIT });
 
     fetch(

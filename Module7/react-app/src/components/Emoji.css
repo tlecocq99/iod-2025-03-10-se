@@ -1,7 +1,7 @@
 .emoji-container {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   gap: 1rem;
   margin-bottom: 1rem;
 }
@@ -10,6 +10,5 @@
 }
 .emoji-button {
   padding: 0.5rem 1rem;
-  font-size: 1rem;
   cursor: pointer;
 }
