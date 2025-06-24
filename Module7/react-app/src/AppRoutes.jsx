@@ -10,13 +10,23 @@ export default function AppRoutes() {
     <>
       <AppBar position="static">
         <Toolbar sx={{ justifyContent: "center" }}>
-          <Button color="inherit" component={NavLink} to="/">
+          <Button sx={{ mr: 2 }} color="inherit" component={NavLink} to="/">
             Home
           </Button>
-          <Button color="inherit" component={NavLink} to="/login">
+          <Button
+            sx={{ mr: 2 }}
+            color="inherit"
+            component={NavLink}
+            to="/login"
+          >
             Login
           </Button>
-          <Button color="inherit" component={NavLink} to="/rates">
+          <Button
+            sx={{ mr: 2 }}
+            color="inherit"
+            component={NavLink}
+            to="/rates"
+          >
             Rates
           </Button>
         </Toolbar>
