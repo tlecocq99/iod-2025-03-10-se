@@ -1,19 +1,26 @@
 import React from "react";
-import { Routes, Route, NavLink } from "react-router-dom";
-import Home from "./pages/Home.jsx";
-import Login from "./pages/Login.jsx";
-import BitcoinRates from "./components/BitcoinRates.jsx";
+import { NavLink, Routes, Route } from "react-router-dom";
+import { AppBar, Toolbar, Button } from "@mui/material";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import BitcoinRates from "./components/BitcoinRates";
 
 export default function AppRoutes() {
   return (
     <>
-      <nav className="app-nav">
-        <NavLink to="/" end>
-          Home
-        </NavLink>
-        <NavLink to="/login">Login</NavLink>
-        <NavLink to="/rates">Bitcoin Rates</NavLink>
-      </nav>
+      <AppBar position="static">
+        <Toolbar sx={{ justifyContent: "center" }}>
+          <Button color="inherit" component={NavLink} to="/">
+            Home
+          </Button>
+          <Button color="inherit" component={NavLink} to="/login">
+            Login
+          </Button>
+          <Button color="inherit" component={NavLink} to="/rates">
+            Rates
+          </Button>
+        </Toolbar>
+      </AppBar>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />

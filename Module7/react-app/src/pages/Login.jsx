@@ -1,8 +1,8 @@
 import React, { useState } from "react";
+import { Box, TextField, Button, Typography } from "@mui/material";
 
 export default function Login() {
   const [user, setUser] = useState("");
-  const [pass, setPass] = useState("");
   const [msg, setMsg] = useState("");
 
   const handleSubmit = (e) => {
@@ -11,29 +11,29 @@ export default function Login() {
   };
 
   return (
-    <form
+    <Box
+      component="form"
       onSubmit={handleSubmit}
-      style={{ maxWidth: "300px", margin: "0 auto" }}
+      sx={{ maxWidth: 300, mx: "auto", mt: 4 }}
     >
-      <h2>Login</h2>
-      <input
-        type="text"
-        placeholder="Username"
+      <Typography variant="h5" gutterBottom>
+        Login
+      </Typography>
+      <TextField
+        label="Username"
         value={user}
         onChange={(e) => setUser(e.target.value)}
-        style={{ width: "100%", padding: ".5rem", margin: ".5rem 0" }}
+        fullWidth
+        sx={{ mb: 2 }}
       />
-      <input
-        type="password"
-        placeholder="Password"
-        value={pass}
-        onChange={(e) => setPass(e.target.value)}
-        style={{ width: "100%", padding: ".5rem", margin: ".5rem 0" }}
-      />
-      <button type="submit" style={{ padding: ".5rem 1rem" }}>
+      <Button type="submit" variant="contained" fullWidth>
         Login
-      </button>
-      {msg && <p style={{ textAlign: "center", marginTop: ".5rem" }}>{msg}</p>}
-    </form>
+      </Button>
+      {msg && (
+        <Typography align="center" mt={2}>
+          {msg}
+        </Typography>
+      )}
+    </Box>
   );
 }

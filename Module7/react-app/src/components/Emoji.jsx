@@ -1,15 +1,18 @@
-import React from "react";
-import { useEmoji } from "../context/EmojiContext.jsx";
-import "./Emoji.css";
+import React, { useContext } from "react";
+import EmojiContext from "../context/EmojiContext";
+import { Box, IconButton, Typography } from "@mui/material";
+import MoodIcon from "@mui/icons-material/Mood";
 
 export default function Emoji() {
-  const { emoji, toggleMood } = useEmoji();
+  const { emoji, toggleMood } = useContext(EmojiContext);
   return (
-    <div className="emoji-container">
-      <span className="emoji-char">{emoji}</span>
-      <button className="emoji-button" onClick={toggleMood}>
-        Change Mood
-      </button>
-    </div>
+    <Box display="flex" alignItems="center" justifyContent="center" mb={2}>
+      <Typography variant="h2" component="span" mr={1}>
+        {emoji}
+      </Typography>
+      <IconButton onClick={toggleMood} color="primary">
+        <MoodIcon />
+      </IconButton>
+    </Box>
   );
 }

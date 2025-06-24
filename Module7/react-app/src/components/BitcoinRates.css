@@ -1,17 +1,22 @@
 .BitcoinRates {
   width: 100%;
-  max-width: 400px;
+  max-width: 450px;
   margin: 0 auto 2rem;
   padding: 1rem;
   border: 1px solid #ddd;
   border-radius: 8px;
-  background: #fff;
+  background: #f8f8f8;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 .currency-label {
-  display: flex;
-  justify-content: space-between;
+  display: block;
   margin: 1rem 0;
+}
+.currency-label select {
+  display: inline-block;
+  margin-top: 0.5rem;
+  width: 100%;
+  max-width: 120px;
 }
 .status p {
   text-align: center;

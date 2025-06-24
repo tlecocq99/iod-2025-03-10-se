@@ -1,9 +1,17 @@
 import React, { useState } from "react";
 import useBitcoinRate from "../hooks/useBitcoinRate";
 import Emoji from "./Emoji";
-import "./BitcoinRates.css";
+import {
+  Card,
+  CardContent,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  Typography,
+} from "@mui/material";
 
-const currencies = ["USD", "AUD", "NZD", "GBP", "EUR", "SGD"];
+const currencies = ["USD", "EUR", "GBP", "NZD", "AUD", "SGD"];
 
 export default function BitcoinRates() {
   const [currency, setCurrency] = useState(currencies[0]);
@@ -17,27 +25,42 @@ export default function BitcoinRates() {
           minimumFractionDigits: 0,
           maximumFractionDigits: 0,
         }).format(price)
-      : null;
+      : "";
 
   return (
-    <div className="BitcoinRates componentBox">
-      <Emoji />
-      <h3>Bitcoin Exchange Rate</h3>
-      <label className="currency-label">
-        Choose currency:
-        <select value={currency} onChange={(e) => setCurrency(e.target.value)}>
-          {currencies.map((c) => (
-            <option key={c} value={c}>
-              {c}
-            </option>
-          ))}
-        </select>
-      </label>
-      <div className="status">
-        {loading && <p>Loading…</p>}
-        {error && <p className="error">Error: {error}</p>}
-        {formatted && <p className="result">1 BTC = {formatted}</p>}
-      </div>
-    </div>
+    <Card sx={{ maxWidth: 400, mx: "auto", my: 4 }}>
+      <CardContent>
+        <Emoji />
+        <Typography variant="h6" align="center" gutterBottom>
+          Bitcoin Exchange Rate
+        </Typography>
+        <FormControl fullWidth sx={{ mb: 2 }}>
+          <InputLabel id="currency-select-label">Currency</InputLabel>
+          <Select
+            labelId="currency-select-label"
+            value={currency}
+            label="Currency"
+            onChange={(e) => setCurrency(e.target.value)}
+          >
+            {currencies.map((c) => (
+              <MenuItem key={c} value={c}>
+                {c}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+        {loading && <Typography align="center">Loading…</Typography>}
+        {error && (
+          <Typography align="center" color="error">
+            {error}
+          </Typography>
+        )}
+        {formatted && (
+          <Typography variant="subtitle1" align="center">
+            1 BTC = {formatted}
+          </Typography>
+        )}
+      </CardContent>
+    </Card>
   );
 }

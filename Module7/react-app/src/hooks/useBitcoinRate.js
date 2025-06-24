@@ -1,55 +1,29 @@
-import { useEffect, useReducer } from "react";
-
-const FETCH_INIT = "FETCH_INIT";
-const FETCH_SUCCESS = "FETCH_SUCCESS";
-const FETCH_FAILURE = "FETCH_FAILURE";
-
-function fetchReducer(state, action) {
-  switch (action.type) {
-    case FETCH_INIT:
-      return { ...state, loading: true, error: null };
-    case FETCH_SUCCESS:
-      return { ...state, loading: false, price: action.payload, error: null };
-    case FETCH_FAILURE:
-      return { ...state, loading: false, error: action.payload };
-    default:
-      throw new Error(`Unhandled action: ${action.type}`);
-  }
-}
+import { useState, useEffect } from "react";
 
 export default function useBitcoinRate(currency) {
-  const [state, dispatch] = useReducer(fetchReducer, {
-    price: null,
-    loading: false,
-    error: null,
-  });
+  const [price, setPrice] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const controller = new AbortController();
-    const signal = controller.signal;
-    dispatch({ type: FETCH_INIT });
+    setLoading(true);
+    setError(null);
 
     fetch(
       `https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=${currency.toLowerCase()}`,
-      { signal }
+      { signal: controller.signal }
     )
       .then((res) => {
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        if (!res.ok) throw new Error(res.statusText);
         return res.json();
       })
-      .then((data) => {
-        const rate = data.bitcoin?.[currency.toLowerCase()];
-        if (rate == null) throw new Error("Unexpected response format");
-        dispatch({ type: FETCH_SUCCESS, payload: rate });
-      })
-      .catch((err) => {
-        if (err.name !== "AbortError") {
-          dispatch({ type: FETCH_FAILURE, payload: err.message });
-        }
-      });
+      .then((data) => setPrice(data.bitcoin[currency.toLowerCase()]))
+      .catch((e) => e.name !== "AbortError" && setError(e.message))
+      .finally(() => setLoading(false));
 
     return () => controller.abort();
   }, [currency]);
 
-  return state; // { price, loading, error }
+  return { price, loading, error };
 }
