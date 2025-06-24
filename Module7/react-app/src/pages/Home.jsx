@@ -6,10 +6,11 @@ export default function Home() {
   return (
     <Box textAlign="center" mt={4}>
       <Typography variant="h4" gutterBottom>
-        Welcome to Crypto Dashboard
+        Welcome to The Crypto Dashboard
       </Typography>
       <Typography gutterBottom>
-        Track Bitcoin prices and set your mood.
+        Track Bitcoin prices and let us know how you're feeling about the
+        market!
       </Typography>
       <Emoji />
     </Box>
