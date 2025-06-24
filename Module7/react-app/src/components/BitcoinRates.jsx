@@ -27,11 +27,17 @@ export default function BitcoinRates() {
         }).format(price)
       : "";
 
+  const display =
+    currency === "NZD"
+      ? `${formatted.replace("$", " $")}`
+      : currency === "AUD"
+      ? `${formatted.replace("$", " $")}`
+      : formatted;
+
   return (
     <Card sx={{ maxWidth: 400, mx: "auto", my: 4 }}>
       <CardContent>
-        <Emoji />
-        <Typography variant="h6" align="center" gutterBottom>
+        <Typography mb={3} variant="h4" align="center" gutterBottom>
           Bitcoin Exchange Rate
         </Typography>
         <FormControl fullWidth sx={{ mb: 2 }}>
@@ -56,10 +62,21 @@ export default function BitcoinRates() {
           </Typography>
         )}
         {formatted && (
-          <Typography variant="subtitle1" align="center">
-            1 BTC = {formatted}
+          <Typography
+            style={{ fontWeight: "bold" }}
+            variant="h5"
+            align="center"
+          >
+            1 BTC = {display}
           </Typography>
         )}
+        <Typography mt={6} variant="h6" align="center" color="textSecondary">
+          How does today's bitcoin price make you feel?
+        </Typography>
+        <Typography mt={3} variant="body2" align="center" color="textSecondary">
+          Click the smiley face below to express your mood!
+        </Typography>
+        <Emoji />
       </CardContent>
     </Card>
   );
