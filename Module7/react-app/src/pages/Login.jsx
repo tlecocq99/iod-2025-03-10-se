@@ -3,11 +3,12 @@ import { Box, TextField, Button, Typography } from "@mui/material";
 
 export default function Login() {
   const [user, setUser] = useState("");
+  const [password, setPassword] = useState("");
   const [msg, setMsg] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setMsg(`Logged in as ${user}`);
+    setMsg(`Welcome back, ${user}! You are now logged in.`);
   };
 
   return (
@@ -23,6 +24,14 @@ export default function Login() {
         label="Username"
         value={user}
         onChange={(e) => setUser(e.target.value)}
+        fullWidth
+        sx={{ mb: 2 }}
+      />
+      <TextField
+        label="Password"
+        value={password}
+        type="password"
+        onChange={(e) => setPassword(e.target.value)}
         fullWidth
         sx={{ mb: 2 }}
       />
