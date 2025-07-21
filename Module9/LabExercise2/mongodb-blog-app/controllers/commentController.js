@@ -1,30 +1,20 @@
-const Post = require("./models/post");
+const Comment = require("../models/comment");
 
-// Find all posts
-Post.find({})
-  .then((posts) => console.log(posts))
-  .catch((err) => console.error(err));
+const getCommentsByPost = (req, res) => {
+  Comment.find({ postId: req.params.postId })
+    .then((comments) => res.send({ result: 200, data: comments }))
+    .catch((err) => res.send({ result: 500, error: err.message }));
+};
 
-// Create a new post
-const newPost = new Post({
-  title: "First post",
-  description: "Hello World",
-  publishedAt: new Date(),
-  imageUrl: "https://...",
-  shareUrl: "https://...",
-  userId: "68678a5fb7fe94d02b00735c", // Example user ID
-});
+const createComment = (req, res) => {
+  const newComment = new Comment(req.body);
+  newComment
+    .save()
+    .then((comment) => res.send({ result: 200, data: comment }))
+    .catch((err) => res.send({ result: 500, error: err.message }));
+};
 
-newPost
-  .save()
-  .then((post) => console.log(post))
-  .catch((err) => console.error(err));
-
-const getUserPosts = (req, res) => {
-  Models.Post.find({ userId: req.params.userId })
-    .then((data) => res.send({ result: 200, data: data }))
-    .catch((err) => {
-      console.log(err);
-      res.send({ result: 500, error: err.message });
-    });
+module.exports = {
+  getCommentsByPost,
+  createComment,
 };
