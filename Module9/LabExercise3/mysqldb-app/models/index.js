@@ -12,7 +12,13 @@ async function init() {
 }
 
 init();
-
+// Sequelize will auto-generate foreign key column names based on the table names
+Post.belongsTo(User);
+User.hasMany(Post);
+Comment.belongsTo(User);
+User.hasMany(Comment);
+Reaction.belongsTo(User);
+User.hasMany(Reaction);
 module.exports = {
   User, // export the model
   Post, // export the post model
