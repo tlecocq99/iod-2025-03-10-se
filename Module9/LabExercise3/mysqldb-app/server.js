@@ -6,6 +6,7 @@ let userRoutes = require("./routes/userRoutes");
 let reactionRoutes = require("./routes/reactionRoutes");
 let commentRoutes = require("./routes/commentRoutes");
 let postRoutes = require("./routes/postRoutes");
+let weatherRoutes = require("./routes/weatherRoutes");
 
 // parse requests of content-type - application/json
 app.use(express.json());
@@ -13,6 +14,8 @@ app.use("/api/users", userRoutes);
 app.use("/api/posts", postRoutes);
 app.use("/api/comments", commentRoutes);
 app.use("/api/reactions", reactionRoutes);
+app.use("/api/weather", weatherRoutes);
+
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to my MySQL application." });
 });
