@@ -1,8 +1,8 @@
 "use strict";
-const User = require("./user"); //require the model
-const Post = require("./post"); // require any additional models
-const Comment = require("./comment"); // require any additional models
-const reaction = require("./reaction");
+const User = require("./user");
+const Post = require("./post");
+const Comment = require("./comment");
+const Reaction = require("./reaction");
 
 async function init() {
   await User.sync(); // sync the model
