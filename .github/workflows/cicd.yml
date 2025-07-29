@@ -4,6 +4,11 @@ on:
   push:
     branches: [main]
 
+defaults:
+  run:
+    shell: bash
+    working-directory: Module10/LabExercise1/socket-chat-app
+
 jobs:
   build:
     runs-on: ubuntu-latest
