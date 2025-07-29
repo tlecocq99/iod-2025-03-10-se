@@ -40,7 +40,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: ./
-          file: ./Dockerfile
+          file: Module10/LabExercise1/socket-chat-app/Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/lab1-part1:latest
 
